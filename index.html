@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nimisha Varma | CI/CD Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard {
+            width: 420px;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .status-box {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .time {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1>Nimisha Varma</h1>
+        <h3>Roll No: 2023BCD0052</h3>
+
+        <div class="info">
+            GitHub + Jenkins CI/CD Interactive Dashboard 
+        </div>
+
+        <div class="status-box">
+            <div>Pipeline Status:</div>
+            <div class="status" id="pipelineStatus">
+                <span class="dot" id="statusDot" style="background:red;"></span>
+                Not Deployed
+            </div>
+        </div>
+
+        <button class="btn" onclick="runPipeline()">Run Pipeline</button>
+
+        <div class="time" id="time"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById("time").innerText =
+                "Current Time: " + now.toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function runPipeline() {
+            const statusText = document.getElementById("pipelineStatus");
+            const dot = document.getElementById("statusDot");
+
+            statusText.innerHTML = "<span class='dot' style='background:orange;'></span> Building...";
+            
+            setTimeout(() => {
+                statusText.innerHTML = "<span class='dot' style='background:green;'></span> Deployment Successful!";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
